@@ -12,7 +12,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import jdraw.framework.*;
+import jdraw.framework.DrawContext;
+import jdraw.framework.DrawTool;
+import jdraw.framework.DrawView;
+import jdraw.framework.FigureListener;
 
 /**
  * This tool defines a mode for drawing rectangles.
@@ -100,9 +103,6 @@ public class RectTool implements DrawTool {
 		anchor = new Point(x, y);
 		newRect = new Rect(x, y, 0, 0);
 		view.getModel().addFigure(newRect);
-		
-
-
 	}
 
 	/**
@@ -120,9 +120,7 @@ public class RectTool implements DrawTool {
 	public void mouseDrag(int x, int y, MouseEvent e) {
 		newRect.setBounds(anchor, new Point(x, y));
 		java.awt.Rectangle r = newRect.getBounds();
-		newRect.addFigureListener(e1 -> new FigureEvent(newRect));
 		this.context.showStatusText("w: " + r.width + ", h: " + r.height);
-
 	}
 
 	/**
@@ -158,8 +156,6 @@ public class RectTool implements DrawTool {
 	public String getName() {
 		return "Rectangle";
 	}
-
-
 
 
 

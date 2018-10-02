@@ -5,8 +5,9 @@
 
 package jdraw.std;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import jdraw.framework.*;
 
@@ -20,13 +21,18 @@ import jdraw.framework.*;
 public class StdDrawModel implements DrawModel {
 
 	private LinkedList<Figure> myFigures = new LinkedList<>();
-	private ArrayList<DrawModelListener> myDrawModelListener = new ArrayList<>();
-
+	private CopyOnWriteArrayList<DrawModelListener> myDrawModelListener = new CopyOnWriteArrayList<>();
+	private FigureListener fl = e -> notifyModelChangeListeners(
+			e.getFigure(), DrawModelEvent.Type.FIGURE_CHANGED);
 
 	@Override
 	public void addFigure(Figure f) {
-			myFigures.add(f);
-			notifyModelChangeListeners(f, DrawModelEvent.Type.FIGURE_ADDED);
+			if (!myFigures.contains(f)){
+				f.addFigureListener(fl);
+				myFigures.add(f);
+				notifyModelChangeListeners(f, DrawModelEvent.Type.FIGURE_ADDED);
+			}
+
 
 	}
 
@@ -37,8 +43,16 @@ public class StdDrawModel implements DrawModel {
 
 	@Override
 	public void removeFigure(Figure f) {
-		myFigures.remove(f);
-		notifyModelChangeListeners(f, DrawModelEvent.Type.FIGURE_REMOVED);
+		if(myFigures.contains(f)){
+			f.removeFigureListener(fl);
+			myFigures.remove(f);
+			notifyModelChangeListeners(f, DrawModelEvent.Type.FIGURE_REMOVED);
+
+			if (myFigures.isEmpty()){
+				notifyModelChangeListeners(null, DrawModelEvent.Type.DRAWING_CLEARED);
+			}
+		}
+
 	}
 
 	@Override
@@ -50,6 +64,7 @@ public class StdDrawModel implements DrawModel {
 	@Override
 	public void removeModelChangeListener(DrawModelListener listener) {
 		myDrawModelListener.remove(listener);
+
 	}
 
 	/** The draw command handler. Initialized here with a dummy implementation. */
@@ -67,14 +82,31 @@ public class StdDrawModel implements DrawModel {
 
 	@Override
 	public void setFigureIndex(Figure f, int index) {
-		// TODO to be implemented  
-		System.out.println("StdDrawModel.setFigureIndex has to be implemented");
+		if (myFigures.contains(f)) {
+			if (myFigures.size()>index) {
+				myFigures.remove(f);
+				myFigures.add(index, f);
+				notifyModelChangeListeners(f, DrawModelEvent.Type.DRAWING_CHANGED);
+			}else{
+				throw  new IndexOutOfBoundsException();
+			}
+		}else {
+			throw new IllegalArgumentException();
+		}
+
+
 	}
 
 	@Override
 	public void removeAllFigures() {
-		// TODO to be implemented  
-		System.out.println("StdDrawModel.removeAllFigures has to be implemented");
+
+		Iterator<Figure> figureIterator = myFigures.iterator();
+		Figure temp;
+		while(figureIterator.hasNext()){
+			temp=figureIterator.next();
+			temp.removeFigureListener(fl);
+		}
+		notifyModelChangeListeners(null, DrawModelEvent.Type.DRAWING_CLEARED);
 	}
 
 	/**

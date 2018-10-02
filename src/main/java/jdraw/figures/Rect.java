@@ -11,6 +11,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import jdraw.framework.*;
 
@@ -25,7 +26,7 @@ public class Rect implements Figure{
 	 * Use the java.awt.Rectangle in order to save/reuse code.
 	 */
 	private final Rectangle rectangle;
-	private ArrayList<FigureListener> myFigureListener = new ArrayList<>();
+	private CopyOnWriteArrayList<FigureListener> myFigureListener = new CopyOnWriteArrayList<>();
 	
 	/**
 	 * Create a new rectangle of the given dimension.
@@ -59,7 +60,10 @@ public class Rect implements Figure{
 	@Override
 	public void move(int dx, int dy) {
 		rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
-		notifyFigureChangeListeners();
+		if (!(dx==0 && dy==0)){
+			notifyFigureChangeListeners();
+		}
+
 	}
 
 	@Override
@@ -85,9 +89,6 @@ public class Rect implements Figure{
 	@Override
 	public void addFigureListener(FigureListener listener) {
 		myFigureListener.add(listener);
-
-
-
 	}
 
 	@Override
@@ -103,7 +104,7 @@ public class Rect implements Figure{
 	/**
 	 * Notifies all the listeners
 	 */
-	private void notifyFigureChangeListeners(){
+	public void notifyFigureChangeListeners(){
 		FigureEvent figureEvent = new FigureEvent(this);
 
 		for (FigureListener listener : myFigureListener){
@@ -111,6 +112,7 @@ public class Rect implements Figure{
 		}
 
 	}
+
 
 
 }
