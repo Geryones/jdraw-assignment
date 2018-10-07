@@ -59,8 +59,8 @@ public class Rect implements Figure{
 
 	@Override
 	public void move(int dx, int dy) {
-		rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
 		if (!(dx==0 && dy==0)){
+			rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
 			notifyFigureChangeListeners();
 		}
 
