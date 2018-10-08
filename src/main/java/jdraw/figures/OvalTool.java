@@ -12,22 +12,9 @@ public class OvalTool extends AbstractDrawTool implements DrawTool {
     }
 
 
-    @Override
-    public void mouseDown(int x, int y, MouseEvent e) {
-
-    }
-
     @Override protected Figure newFigure(int x, int y) {
-        return null;
+        return new Oval(x, y,0,0);
     }
 
-    @Override
-    public void mouseDrag(int x, int y, MouseEvent e) {
 
-    }
-
-    @Override
-    public void mouseUp(int x, int y, MouseEvent e) {
-
-    }
 }
