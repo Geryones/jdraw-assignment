@@ -2,6 +2,8 @@ package jdraw.figures;
 
 import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
+import jdraw.framework.Figure;
+
 import java.awt.event.MouseEvent;
 
 public class OvalTool extends AbstractDrawTool implements DrawTool {
@@ -13,6 +15,10 @@ public class OvalTool extends AbstractDrawTool implements DrawTool {
     @Override
     public void mouseDown(int x, int y, MouseEvent e) {
 
+    }
+
+    @Override protected Figure newFigure(int x, int y) {
+        return null;
     }
 
     @Override
