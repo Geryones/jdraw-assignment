@@ -9,9 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+
 
 import jdraw.framework.*;
 
@@ -21,12 +19,12 @@ import jdraw.framework.*;
  * @author Christoph Denzler
  *
  */
-public class Rect implements Figure{
+public class Rect extends AbstractFigure implements Figure {
 	/**
 	 * Use the java.awt.Rectangle in order to save/reuse code.
 	 */
 	private final Rectangle rectangle;
-	private CopyOnWriteArrayList<FigureListener> myFigureListener = new CopyOnWriteArrayList<>();
+
 	
 	/**
 	 * Create a new rectangle of the given dimension.
@@ -76,42 +74,8 @@ public class Rect implements Figure{
 		return rectangle.getBounds();
 	}
 
-	/**
-	 * Returns a list of 8 handles for this Rectangle.
-	 * @return all handles that are attached to the targeted figure.
-	 * @see jdraw.framework.Figure#getHandles()
-	 */	
-	@Override
-	public List<FigureHandle> getHandles() {
-		return null;
-	}
 
-	@Override
-	public void addFigureListener(FigureListener listener) {
-		myFigureListener.add(listener);
-	}
 
-	@Override
-	public void removeFigureListener(FigureListener listener) {
-		myFigureListener.remove(listener);
-	}
-
-	@Override
-	public Figure clone() {
-		return null;
-	}
-
-	/**
-	 * Notifies all the listeners
-	 */
-	public void notifyFigureChangeListeners(){
-		FigureEvent figureEvent = new FigureEvent(this);
-
-		for (FigureListener listener : myFigureListener){
-			listener.figureChanged(figureEvent);
-		}
-
-	}
 
 
 

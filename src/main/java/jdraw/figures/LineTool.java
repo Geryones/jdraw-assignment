@@ -2,36 +2,17 @@ package jdraw.figures;
 
 import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
-import jdraw.framework.DrawView;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class LineTool implements DrawTool {
+public class LineTool extends AbstractDrawTool implements DrawTool {
 
-    /**
-     * image resource
-     */
-    private static final String IMAGES ="/images/";
-    private DrawContext context;
-    private DrawView view;
+
     private Line newLine=null;
-    private Point anchor=null;
 
     public LineTool(DrawContext context){
-        this.context=context;
-        this.view=context.getView();
-    }
+        super(context,"line");
 
-    @Override
-    public void activate() {
-        this.context.showStatusText("Line Mode");
-    }
-
-    @Override
-    public void deactivate() {
-        this.context.showStatusText("");
     }
 
     @Override
@@ -58,18 +39,5 @@ public class LineTool implements DrawTool {
         this.context.showStatusText("Line Mode");
     }
 
-    @Override
-    public Cursor getCursor() {
-            return Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
-    }
 
-    @Override
-    public Icon getIcon() {
-        return new ImageIcon(getClass().getResource(IMAGES + "line.png"));
-    }
-
-    @Override
-    public String getName() {
-        return "Line";
-    }
 }
