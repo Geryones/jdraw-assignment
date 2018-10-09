@@ -22,10 +22,11 @@ public class Oval extends AbstractFigure implements Figure {
 
     @Override
     public void move(int dx, int dy) {
-        if (!(dx==0 && dy==0)){
-            oval.setFrame(oval.getX()+dx,oval.getY()+dy,oval.getWidth(),oval.getHeight());
-            notifyFigureChangeListeners();
+        if (dx==0 && dy==0){
+            return;
         }
+        oval.setFrame(oval.getX()+dx,oval.getY()+dy,oval.getWidth(),oval.getHeight());
+        notifyFigureChangeListeners();
     }
 
     @Override

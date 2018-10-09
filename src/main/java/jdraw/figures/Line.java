@@ -30,17 +30,18 @@ public class Line extends AbstractFigure implements Figure {
     @Override
     public void move(int dx, int dy) {
         if (dx == 0 && dy == 0) {
-            line.setLine(line.getX1() + dx, line.getY1() + dy, line.getX2() + dx, line.getY2() + dy);
-            notifyFigureChangeListeners();
+            return;
         }
+        line.setLine(line.getX1() + dx, line.getY1() + dy, line.getX2() + dx, line.getY2() + dy);
+        notifyFigureChangeListeners();
     }
 
     @Override
     public boolean contains(int x, int y) {
         int hitBoxSize=10;
-        int boxX= x-hitBoxSize/2;
-        int boxY = y-hitBoxSize/2;
-        return line.intersects(boxX,boxY,hitBoxSize,hitBoxSize);
+        int boxX = x - hitBoxSize / 2;
+        int boxY = y - hitBoxSize / 2;
+        return line.intersects(boxX, boxY, hitBoxSize, hitBoxSize);
     }
 
     @Override

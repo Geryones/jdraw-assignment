@@ -57,11 +57,11 @@ public class Rect extends AbstractFigure implements Figure {
 
 	@Override
 	public void move(int dx, int dy) {
-		if (!(dx==0 && dy==0)){
-			rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
-			notifyFigureChangeListeners();
+		if (dx==0 && dy==0){
+			return;
 		}
-
+		rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
+		notifyFigureChangeListeners();
 	}
 
 	@Override
