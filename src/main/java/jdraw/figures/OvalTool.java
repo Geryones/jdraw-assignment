@@ -7,6 +7,7 @@ import jdraw.framework.Figure;
 import java.awt.event.MouseEvent;
 
 public class OvalTool extends AbstractDrawTool implements DrawTool {
+
     public OvalTool(DrawContext context){
         super(context,"oval");
     }
