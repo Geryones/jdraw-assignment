@@ -3,20 +3,25 @@ package jdraw.handles;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
+import jdraw.handles.states.AbstractHandleState;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 
 /**
  * Created by Geryones on 09/10/2018.
  */
-public abstract class AbstractHandles implements FigureHandle {
+public abstract class AbstractFigureHandle implements FigureHandle {
 
     protected Figure owner = null;
     protected final int HANDLESIZE = 6;
+    protected Point corner;
+
+    protected AbstractHandleState state;
 
 
-    public AbstractHandles (Figure owner){
+    public AbstractFigureHandle(Figure owner){
         this.owner = owner;
     }
 
@@ -41,4 +46,14 @@ public abstract class AbstractHandles implements FigureHandle {
         return rect.contains(x, y);
     }
 
+    @Override
+    public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
+        corner = null;
+
+    }
+
+    @Override
+    public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
+        owner.setBounds(new Point(x , y), corner);
+    }
 }

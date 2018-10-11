@@ -8,6 +8,7 @@ import java.awt.geom.Ellipse2D;
 public class Oval extends AbstractFigure implements Figure {
     private final Ellipse2D oval;
 
+
     public Oval(int x, int y, int w , int h){
         oval= new Ellipse2D.Double(x,y,0,0);
     }
@@ -36,7 +37,8 @@ public class Oval extends AbstractFigure implements Figure {
 
     @Override
     public void setBounds(Point origin, Point corner) {
-        oval.setFrameFromCenter(origin,corner);
+        //oval.setFrameFromCenter(origin,corner);
+        oval.setFrameFromDiagonal(origin,corner);
         notifyFigureChangeListeners();
     }
 

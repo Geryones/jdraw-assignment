@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 /**
  * Created by Geryones on 09/10/2018.
  */
-public class SouthEastHandle extends AbstractHandles implements FigureHandle {
+public class SouthEastHandle extends AbstractFigureHandle implements FigureHandle {
 
     public SouthEastHandle(Figure owner){
         super(owner);
@@ -23,18 +23,12 @@ public class SouthEastHandle extends AbstractHandles implements FigureHandle {
 
     @Override
     public void startInteraction(int x, int y, MouseEvent e, DrawView v) {
-
+        Rectangle r = owner.getBounds();
+        corner = r.getLocation();
     }
 
-    @Override
-    public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
 
-    }
 
-    @Override
-    public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
-
-    }
 
     @Override
     public Cursor getCursor(){
