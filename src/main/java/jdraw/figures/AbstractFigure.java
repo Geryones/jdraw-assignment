@@ -23,7 +23,6 @@ public abstract class AbstractFigure implements Figure {
         handles.add(new WestHandle(this));
         handles.add(new EastHandle(this));
         handles.add(new NorthHandle(this));
-
         handles.add(new NorthEastHandle(this));
         handles.add(new SouthWestHandle(this));
         handles.add(new SouthEastHandle(this));

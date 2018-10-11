@@ -23,6 +23,7 @@ public abstract class AbstractFigureHandle implements FigureHandle {
 
     public AbstractFigureHandle(Figure owner){
         this.owner = owner;
+
     }
 
     public Figure getOwner(){

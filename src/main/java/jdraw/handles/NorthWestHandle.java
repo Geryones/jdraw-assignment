@@ -16,7 +16,7 @@ public class NorthWestHandle extends AbstractFigureHandle implements FigureHandl
 
     public NorthWestHandle(Figure owner){
         super(owner);
-        //state= new NorthWestState();
+        state= new NorthWestState(owner);
     }
 
     public Point getLocation(){
@@ -40,11 +40,7 @@ public class NorthWestHandle extends AbstractFigureHandle implements FigureHandl
 
     @Override
     public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
-       /*
-       if (x > (owner.getBounds().x + owner.getBounds().width)){
-            state = new NorthEastState(state);
-        }
-        */
+        //state = state.evalState(x, y);
        // owner.setBounds(new Point(x , y), state.getCorner());
         owner.setBounds(new Point(x, y),corner);
     }

@@ -10,4 +10,5 @@ public interface HandleStateInterface {
 
     void setPoint(Point point);
     void setCorner(Point corner);
+    HandleStateInterface evalState(int x, int y);
 }
