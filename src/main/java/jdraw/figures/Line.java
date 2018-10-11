@@ -1,8 +1,14 @@
 package jdraw.figures;
 
 import jdraw.framework.Figure;
+import jdraw.framework.FigureHandle;
+import jdraw.handles.NorthWestHandle;
+import jdraw.handles.SouthEastHandle;
+
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Line extends AbstractFigure implements Figure {
 
@@ -53,6 +59,14 @@ public class Line extends AbstractFigure implements Figure {
     @Override
     public Rectangle getBounds() {
         return line.getBounds();
+    }
+
+    @Override
+    public java.util.List<FigureHandle> getHandles() {
+        List<FigureHandle> handles = new LinkedList<>();
+        handles.add(new NorthWestHandle(this));
+        handles.add(new SouthEastHandle(this));
+        return handles;
     }
 }
 

@@ -18,7 +18,7 @@ public class NorthEastHandle extends AbstractHandles implements FigureHandle {
 
     @Override
     public Point getLocation() {
-        return null;
+        return new Point(owner.getBounds().x + owner.getBounds().width, owner.getBounds().y);
     }
 
     @Override
@@ -34,5 +34,10 @@ public class NorthEastHandle extends AbstractHandles implements FigureHandle {
     @Override
     public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
 
+    }
+
+    @Override
+    public Cursor getCursor(){
+        return Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR);
     }
 }

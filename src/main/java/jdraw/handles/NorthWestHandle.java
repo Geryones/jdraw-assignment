@@ -31,4 +31,9 @@ public class NorthWestHandle extends AbstractHandles implements FigureHandle {
     @Override public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
 
     }
+
+    @Override
+    public Cursor getCursor(){
+        return Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR);
+    }
 }

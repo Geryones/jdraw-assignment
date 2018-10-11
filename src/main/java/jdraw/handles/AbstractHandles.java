@@ -40,8 +40,5 @@ public abstract class AbstractHandles implements FigureHandle {
                 HANDLESIZE, HANDLESIZE);
         return rect.contains(x, y);
     }
-    @Override
-    public Cursor getCursor(){
-        return Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR);
-    }
+
 }

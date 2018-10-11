@@ -18,7 +18,7 @@ public class SouthWestHandle extends AbstractHandles implements FigureHandle {
 
     @Override
     public Point getLocation() {
-        return null;
+        return new Point(owner.getBounds().x , owner.getBounds().y + owner.getBounds().height);
     }
 
     @Override
@@ -34,5 +34,10 @@ public class SouthWestHandle extends AbstractHandles implements FigureHandle {
     @Override
     public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
 
+    }
+
+    @Override
+    public Cursor getCursor(){
+        return Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR);
     }
 }
