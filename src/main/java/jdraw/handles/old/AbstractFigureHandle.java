@@ -1,9 +1,9 @@
-package jdraw.handles;
+package jdraw.handles.old;
 
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.handles.states.AbstractHandleState;
+import jdraw.handles.old.states.AbstractHandleState;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -38,6 +38,7 @@ public abstract class AbstractFigureHandle implements FigureHandle {
         g.setColor(Color.BLACK);
         g.drawRect(loc.x - HANDLESIZE / 2, loc.y - HANDLESIZE / 2, HANDLESIZE, HANDLESIZE);
     }
+
     @Override
     public boolean contains(int x, int y){
         Rectangle rect = new Rectangle(

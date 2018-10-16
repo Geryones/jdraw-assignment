@@ -2,13 +2,14 @@ package jdraw.framework;
 
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public interface HandleStateInterface {
     Cursor getCursor();
-    Point getPoint();
     Point getCorner();
+    Figure getOwner();
 
-    void setPoint(Point point);
-    void setCorner(Point corner);
-    HandleStateInterface evalState(int x, int y);
+    void dragInteraction(int x, int y, MouseEvent e, DrawView v);
+    void startInteraction(int x, int y, MouseEvent e, DrawView v);
+    void stopInteraction(int x, int y, MouseEvent e, DrawView v);
 }

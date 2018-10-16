@@ -1,4 +1,4 @@
-package jdraw.handles;
+package jdraw.handles.old;
 
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
@@ -10,21 +10,21 @@ import java.awt.event.MouseEvent;
 /**
  * Created by Geryones on 09/10/2018.
  */
-public class NorthEastHandle extends AbstractFigureHandle implements FigureHandle {
+public class SouthEastHandle extends AbstractFigureHandle implements FigureHandle {
 
-    public NorthEastHandle(Figure owner){
+    public SouthEastHandle(Figure owner){
         super(owner);
     }
 
     @Override
     public Point getLocation() {
-        return new Point(owner.getBounds().x + owner.getBounds().width, owner.getBounds().y);
+        return new Point( owner.getBounds().x + owner.getBounds().width, owner.getBounds().y + owner.getBounds().height );
     }
 
     @Override
     public void startInteraction(int x, int y, MouseEvent e, DrawView v) {
         Rectangle r = owner.getBounds();
-        corner = new Point(r.x, r.y +r.height);
+        corner = r.getLocation();
     }
 
 
@@ -32,6 +32,6 @@ public class NorthEastHandle extends AbstractFigureHandle implements FigureHandl
 
     @Override
     public Cursor getCursor(){
-        return Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR);
+        return Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR);
     }
 }

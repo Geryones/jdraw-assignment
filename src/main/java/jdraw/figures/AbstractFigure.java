@@ -4,9 +4,11 @@ import jdraw.framework.Figure;
 import jdraw.framework.FigureEvent;
 import jdraw.framework.FigureHandle;
 import jdraw.framework.FigureListener;
-import jdraw.handles.*;
+import jdraw.handleStates.Handle;
+import jdraw.handleStates.NEHandleState;
+import jdraw.handleStates.NWHandleState;
+import jdraw.handles.old.*;
 
-import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -20,6 +22,10 @@ public abstract class AbstractFigure implements Figure {
     @Override
     public List<FigureHandle> getHandles() {
         List<FigureHandle> handles = new LinkedList<>();
+
+        handles.add(new Handle(new NWHandleState(this)));
+        handles.add(new Handle(new NEHandleState(this)));
+        /*
         handles.add(new WestHandle(this));
         handles.add(new EastHandle(this));
         handles.add(new NorthHandle(this));
@@ -27,9 +33,11 @@ public abstract class AbstractFigure implements Figure {
         handles.add(new SouthWestHandle(this));
         handles.add(new SouthEastHandle(this));
         handles.add(new SouthHandle(this));
-
         handles.add(new NorthWestHandle(this));
+        */
+
         return handles;
+
     }
 
     @Override

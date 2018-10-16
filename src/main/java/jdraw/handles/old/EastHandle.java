@@ -1,4 +1,4 @@
-package jdraw.handles;
+package jdraw.handles.old;
 
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;

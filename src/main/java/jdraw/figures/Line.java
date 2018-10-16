@@ -2,8 +2,8 @@ package jdraw.figures;
 
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.handles.NorthWestHandle;
-import jdraw.handles.SouthEastHandle;
+import jdraw.handles.old.NorthWestHandle;
+import jdraw.handles.old.SouthEastHandle;
 
 import java.awt.*;
 import java.awt.geom.Line2D;

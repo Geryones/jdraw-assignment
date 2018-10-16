@@ -1,10 +1,9 @@
-package jdraw.handles;
+package jdraw.handles.old;
 
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.handles.states.NorthEastState;
-import jdraw.handles.states.NorthWestState;
+
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -16,7 +15,6 @@ public class NorthWestHandle extends AbstractFigureHandle implements FigureHandl
 
     public NorthWestHandle(Figure owner){
         super(owner);
-        state= new NorthWestState(owner);
     }
 
     public Point getLocation(){
