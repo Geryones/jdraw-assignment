@@ -108,4 +108,7 @@ public interface Figure extends Serializable, Cloneable {
 	 */
 	Figure clone();
 
+	void swapHorizontal();
+	void swapVertical();
+
 }

@@ -2,8 +2,11 @@ package jdraw.figures;
 
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.handles.old.NorthWestHandle;
-import jdraw.handles.old.SouthEastHandle;
+
+import jdraw.handleStates.Handle;
+import jdraw.handleStates.NWHandleState;
+import jdraw.handleStates.SEHandleState;
+
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -64,9 +67,26 @@ public class Line extends AbstractFigure implements Figure {
     @Override
     public java.util.List<FigureHandle> getHandles() {
         List<FigureHandle> handles = new LinkedList<>();
-        handles.add(new NorthWestHandle(this));
-        handles.add(new SouthEastHandle(this));
+        handles.add(new Handle(new NWHandleState(this)));
+        handles.add(new Handle(new SEHandleState(this)));
         return handles;
+    }
+
+    @Override
+    public void swapHorizontal(){
+        Handle NW = (Handle) handles.get(0);
+        Handle SE = (Handle) handles.get(1);
+
+        FigureHandle NWState = NW.getState();
+
+        NW.setState(SE.getState());
+        SE.setState(NWState);
+
+    }
+
+    @Override
+    public void swapVertical(){
+      swapHorizontal();
     }
 }
 

@@ -14,10 +14,11 @@ import java.awt.event.MouseEvent;
  */
 public class Handle implements FigureHandle {
 
-    HandleStateInterface state;
+    FigureHandle state;
+
     protected final int HANDLESIZE = 6;
 
-    public Handle(HandleStateInterface state){
+    public Handle(FigureHandle state){
         this.state=state;
     }
 
@@ -26,7 +27,7 @@ public class Handle implements FigureHandle {
     }
 
     @Override public Point getLocation() {
-        return state.getCorner();
+        return state.getLocation();
     }
 
     @Override
@@ -61,5 +62,13 @@ public class Handle implements FigureHandle {
 
     @Override public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
         state.stopInteraction(x, y, e, v);
+    }
+
+    public FigureHandle getState() {
+        return state;
+    }
+
+    public void setState(FigureHandle state) {
+        this.state = state;
     }
 }

@@ -1,13 +1,9 @@
 package jdraw.figures;
 
-import jdraw.framework.Figure;
-import jdraw.framework.FigureEvent;
-import jdraw.framework.FigureHandle;
-import jdraw.framework.FigureListener;
-import jdraw.handleStates.Handle;
-import jdraw.handleStates.NEHandleState;
-import jdraw.handleStates.NWHandleState;
-import jdraw.handles.old.*;
+import jdraw.framework.*;
+import jdraw.handleStates.*;
+
+
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,27 +14,8 @@ public abstract class AbstractFigure implements Figure {
 
 
     private CopyOnWriteArrayList<FigureListener> myFigureListener = new CopyOnWriteArrayList<>();
+    List<FigureHandle> handles = new LinkedList<>();
 
-    @Override
-    public List<FigureHandle> getHandles() {
-        List<FigureHandle> handles = new LinkedList<>();
-
-        handles.add(new Handle(new NWHandleState(this)));
-        handles.add(new Handle(new NEHandleState(this)));
-        /*
-        handles.add(new WestHandle(this));
-        handles.add(new EastHandle(this));
-        handles.add(new NorthHandle(this));
-        handles.add(new NorthEastHandle(this));
-        handles.add(new SouthWestHandle(this));
-        handles.add(new SouthEastHandle(this));
-        handles.add(new SouthHandle(this));
-        handles.add(new NorthWestHandle(this));
-        */
-
-        return handles;
-
-    }
 
     @Override
     public void addFigureListener(FigureListener listener) {
@@ -61,6 +38,73 @@ public abstract class AbstractFigure implements Figure {
         for (FigureListener listener : myFigureListener){
             listener.figureChanged(figureEvent);
         }
+    }
+
+    @Override
+    public List<FigureHandle> getHandles() {
+
+
+        handles.add(new Handle(new NWHandleState(this)));
+        handles.add(new Handle(new NEHandleState(this)));
+        handles.add(new Handle(new SWHandleState(this)));
+        handles.add(new Handle(new SEHandleState(this)));
+        handles.add(new Handle(new WHandleState(this)));
+        handles.add(new Handle(new EHandleState(this)));
+        handles.add(new Handle(new NHandleState(this)));
+        handles.add(new Handle(new SHandleState(this)));
+
+        return handles;
+
+    }
+
+
+
+    public void swapVertical(){
+        Handle NW = (Handle) handles.get(0);
+        Handle NE = (Handle) handles.get(1);
+        Handle SW = (Handle) handles.get(2);
+        Handle SE = (Handle) handles.get(3);
+        Handle W = (Handle) handles.get(4);
+        Handle E = (Handle) handles.get(5);
+
+        FigureHandle NWState = NW.getState();
+        FigureHandle SWState = SW.getState();
+        FigureHandle WState = W.getState();
+
+        NW.setState(NE.getState());
+        NE.setState(NWState);
+
+        SW.setState(SE.getState());
+        SE.setState(SWState);
+
+        W.setState(E.getState());
+        E.setState(WState);
+
+
+    }
+
+    public void swapHorizontal(){
+        Handle NW = (Handle) handles.get(0);
+        Handle NE = (Handle) handles.get(1);
+        Handle SW = (Handle) handles.get(2);
+        Handle SE = (Handle) handles.get(3);
+        Handle N = (Handle) handles.get(6);
+        Handle S = (Handle) handles.get(7);
+
+        FigureHandle NWState = NW.getState();
+        FigureHandle NEState = NE.getState();
+        FigureHandle NState = N.getState();
+
+        NW.setState(SW.getState());
+        SW.setState(NWState);
+
+        NE.setState(SE.getState());
+        SE.setState(NEState);
+
+        N.setState(S.getState());
+        S.setState(NState);
+
+
     }
 
 
