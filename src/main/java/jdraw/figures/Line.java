@@ -1,21 +1,18 @@
 package jdraw.figures;
 
 import jdraw.framework.Figure;
+import jdraw.framework.FigureEvent;
 import jdraw.framework.FigureHandle;
-
-import jdraw.handleStates.Handle;
-import jdraw.handleStates.NWHandleState;
-import jdraw.handleStates.SEHandleState;
-
+import jdraw.handleStates.*;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
-import java.util.LinkedList;
-import java.util.List;
+
 
 public class Line extends AbstractFigure implements Figure {
 
     private final Line2D line;
+    private Point start, end;
 
     /**
      * Creates a new Line with start and end coordinates
@@ -27,13 +24,15 @@ public class Line extends AbstractFigure implements Figure {
      */
     public Line(int startX, int startY, int endX, int endY) {
         line = new Line2D.Double(startX, startY, endX, endY);
+        updatePoints();
     }
+
+
 
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);
         g.drawLine((int) line.getX1(), (int) line.getY1(), (int) line.getX2(), (int) line.getY2());
-
     }
 
     @Override
@@ -42,6 +41,7 @@ public class Line extends AbstractFigure implements Figure {
             return;
         }
         line.setLine(line.getX1() + dx, line.getY1() + dy, line.getX2() + dx, line.getY2() + dy);
+        updatePoints();
         notifyFigureChangeListeners();
     }
 
@@ -56,6 +56,7 @@ public class Line extends AbstractFigure implements Figure {
     @Override
     public void setBounds(Point origin, Point corner) {
         line.setLine(origin, corner);
+        updatePoints();
         notifyFigureChangeListeners();
     }
 
@@ -66,27 +67,48 @@ public class Line extends AbstractFigure implements Figure {
 
     @Override
     public java.util.List<FigureHandle> getHandles() {
-        List<FigureHandle> handles = new LinkedList<>();
-        handles.add(new Handle(new NWHandleState(this)));
-        handles.add(new Handle(new SEHandleState(this)));
+        handles.clear();
+        handles.add(new Handle(new LineStartHandleState(this)));
+        handles.add(new Handle(new LineEndHandleState(this)));
         return handles;
+    }
+
+
+
+    private void updatePoints() {
+        start = new Point((int) line.getX1(),(int) line.getY1());
+        end = new Point((int) line.getX2(),(int) line.getY2());
+
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+        line.setLine(start, end);
+        notifyFigureChangeListeners();
+
+    }
+    public Point getStart() {
+        return start;
+    }
+
+    public Point getEnd() {
+        return end;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+        line.setLine(start, end);
+        notifyFigureChangeListeners();
     }
 
     @Override
     public void swapHorizontal(){
-        Handle NW = (Handle) handles.get(0);
-        Handle SE = (Handle) handles.get(1);
-
-        FigureHandle NWState = NW.getState();
-
-        NW.setState(SE.getState());
-        SE.setState(NWState);
 
     }
 
     @Override
     public void swapVertical(){
-      swapHorizontal();
+
     }
 }
 

@@ -4,6 +4,7 @@ import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;

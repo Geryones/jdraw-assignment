@@ -5,9 +5,7 @@
 
 package jdraw.framework;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 

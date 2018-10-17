@@ -1,10 +1,8 @@
 package jdraw.handleStates;
 
-import jdraw.figures.Rect;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.framework.HandleStateInterface;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -14,31 +12,25 @@ import java.awt.event.MouseEvent;
  */
 public class WHandleState extends AbstractHandleState implements FigureHandle {
 
-   public WHandleState(Figure owner){
-       super(owner);
-   }
-
+    public WHandleState(Figure owner) {
+        super(owner);
+    }
 
     @Override public Cursor getCursor() {
         return Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR);
     }
 
     @Override public Point getLocation() {
-       Rectangle r = getOwner().getBounds();
+        Rectangle r = getOwner().getBounds();
         return new Point(r.x, r.y + r.height / 2);
     }
 
     @Override public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
         Rectangle r = getOwner().getBounds();
-        getOwner().setBounds(new Point(x, r.y),
-                new Point(r.x + r.width, r.y + r.height));
+        getOwner().setBounds(new Point(x, r.y), new Point(r.x + r.width, r.y + r.height));
 
-        if (x > r.x + r.width){
+        if (x > r.x + r.width) {
             getOwner().swapVertical();
         }
-    }
-
-    @Override public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
-
     }
 }

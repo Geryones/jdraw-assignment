@@ -5,9 +5,7 @@
 
 package jdraw.framework;
 
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**

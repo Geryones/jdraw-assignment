@@ -3,7 +3,6 @@ package jdraw.handleStates;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.framework.HandleStateInterface;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -43,7 +42,4 @@ public class NEHandleState extends AbstractHandleState implements FigureHandle {
 
     }
 
-    @Override public void stopInteraction(int x, int y, MouseEvent e, DrawView v) {
-
-    }
 }

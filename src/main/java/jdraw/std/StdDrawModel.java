@@ -5,11 +5,11 @@
 
 package jdraw.std;
 
+import jdraw.framework.*;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import jdraw.framework.*;
 
 /**
  * Provide a standard behavior for the drawing model. This class initially does not implement the methods

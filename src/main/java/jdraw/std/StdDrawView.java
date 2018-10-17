@@ -5,30 +5,13 @@
 
 package jdraw.std;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import jdraw.framework.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.swing.JComponent;
-
-import jdraw.framework.DrawContext;
-import jdraw.framework.DrawModel;
-import jdraw.framework.DrawModelEvent;
-import jdraw.framework.DrawModelListener;
-import jdraw.framework.DrawView;
-import jdraw.framework.Figure;
-import jdraw.framework.FigureHandle;
-import jdraw.framework.DrawGrid;
 
 /**
  * Standard implementation of interface DrawView.

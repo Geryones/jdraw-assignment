@@ -3,7 +3,6 @@ package jdraw.handleStates;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.framework.HandleStateInterface;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -16,7 +15,7 @@ public class Handle implements FigureHandle {
 
     FigureHandle state;
 
-    protected final int HANDLESIZE = 6;
+    protected final int HANDLESIZE = 10;
 
     public Handle(FigureHandle state){
         this.state=state;

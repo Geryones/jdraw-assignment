@@ -5,7 +5,7 @@
 
 package jdraw.framework;
 
-import java.awt.Point;
+import java.awt.*;
 
 /**
  * A DrawGrid is used to restrict the coordinates used when the mouse is

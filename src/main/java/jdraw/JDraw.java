@@ -6,7 +6,6 @@
 package jdraw;
 
 import jdraw.framework.DrawContext;
-
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

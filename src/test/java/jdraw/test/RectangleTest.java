@@ -1,17 +1,16 @@
 package jdraw.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.awt.Point;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import jdraw.figures.Rect;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureEvent;
 import jdraw.framework.FigureListener;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.awt.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RectangleTest {
 

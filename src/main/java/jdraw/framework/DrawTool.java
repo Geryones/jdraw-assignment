@@ -5,10 +5,9 @@
 
 package jdraw.framework;
 
-import java.awt.Cursor;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
-
-import javax.swing.Icon;
 
 /**
  * A tool defines a mode of the drawing view, intended to be set over a tool

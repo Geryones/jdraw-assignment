@@ -4,9 +4,6 @@ import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
 import jdraw.framework.Figure;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
-
 public class LineTool extends AbstractDrawTool implements DrawTool {
 
 

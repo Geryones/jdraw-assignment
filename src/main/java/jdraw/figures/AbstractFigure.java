@@ -1,9 +1,10 @@
 package jdraw.figures;
 
-import jdraw.framework.*;
+import jdraw.framework.Figure;
+import jdraw.framework.FigureEvent;
+import jdraw.framework.FigureHandle;
+import jdraw.framework.FigureListener;
 import jdraw.handleStates.*;
-
-
 
 import java.util.LinkedList;
 import java.util.List;

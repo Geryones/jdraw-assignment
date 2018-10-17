@@ -5,13 +5,9 @@
 
 package jdraw.figures;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
+import jdraw.framework.Figure;
 
-
-import jdraw.framework.*;
+import java.awt.*;
 
 /**
  * Represents rectangles in JDraw.

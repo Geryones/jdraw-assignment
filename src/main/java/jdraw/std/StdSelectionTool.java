@@ -5,22 +5,15 @@
 
 package jdraw.std;
 
-import java.awt.Cursor;
-import java.awt.Rectangle;
+import jdraw.framework.*;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
-import jdraw.framework.DrawContext;
-import jdraw.framework.DrawTool;
-import jdraw.framework.DrawView;
-import jdraw.framework.Figure;
-import jdraw.framework.FigureHandle;
 
 /**
  * The default tool is used for figure selection and general manipulation of one or more figures.
