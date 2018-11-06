@@ -73,9 +73,6 @@ public class Line extends AbstractFigure implements Figure {
         return handles;
     }
 
-    @Override public Figure clone() {
-        return (Line) SerializableClone.clone(this);
-    }
 
     private void updatePoints() {
         start = new Point((int) line.getX1(),(int) line.getY1());

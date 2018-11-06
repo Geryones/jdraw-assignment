@@ -27,10 +27,12 @@ public class Group extends AbstractFigure implements Figure, FigureGroup {
     }
 
     @Override public void move(int dx, int dy) {
-        for (Figure f : parts){
-            f.move(dx, dy);
+        if (!(dx == 0 && dy == 0)) {
+            for (Figure f : parts) {
+                f.move(dx, dy);
+            }
+            notifyFigureChangeListeners();
         }
-
     }
 
     @Override public boolean contains(int x, int y) {
@@ -49,9 +51,6 @@ public class Group extends AbstractFigure implements Figure, FigureGroup {
         return rect;
     }
 
-    @Override public Figure clone() {
-        return (Group) SerializableClone.clone(this);
-    }
 
     @Override public Iterable<Figure> getFigureParts() {
         return parts;

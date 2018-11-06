@@ -71,9 +71,4 @@ public class Rect extends AbstractFigure implements Figure{
 		return rectangle.getBounds();
 	}
 
-	@Override public Figure clone() {
-		return (Rect) SerializableClone.clone(this);
-
-	}
-
 }

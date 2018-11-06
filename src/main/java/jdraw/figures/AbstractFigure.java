@@ -5,6 +5,8 @@ import jdraw.framework.FigureEvent;
 import jdraw.framework.FigureHandle;
 import jdraw.framework.FigureListener;
 import jdraw.handleStates.*;
+import jdraw.utils.SerializableClone;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -13,9 +15,13 @@ public abstract class AbstractFigure implements Figure{
 
     public Group parent = null;
 
-    private CopyOnWriteArrayList<FigureListener> myFigureListener = new CopyOnWriteArrayList<>();
+    private transient CopyOnWriteArrayList<FigureListener> myFigureListener = new CopyOnWriteArrayList<>();
     List<FigureHandle> handles = new LinkedList<>();
 
+    private Object readResolve() {
+        this.myFigureListener = new CopyOnWriteArrayList<>();
+        return this;
+    }
 
     @Override
     public void addFigureListener(FigureListener listener) {
@@ -27,9 +33,8 @@ public abstract class AbstractFigure implements Figure{
         myFigureListener.remove(listener);
     }
 
-    @Override
-    public Figure clone() {
-        return null;
+    @Override public  Figure clone() {
+        return (Rect) SerializableClone.clone(this);
     }
 
     public void notifyFigureChangeListeners(){
@@ -42,8 +47,14 @@ public abstract class AbstractFigure implements Figure{
 
     @Override
     public List<FigureHandle> getHandles() {
+        if (handles.isEmpty()){
+            initHandles();
+        }
 
+        return handles;
+    }
 
+    public void initHandles(){
         handles.add(new Handle(new NWHandleState(this)));
         handles.add(new Handle(new NEHandleState(this)));
         handles.add(new Handle(new SWHandleState(this)));
@@ -52,9 +63,6 @@ public abstract class AbstractFigure implements Figure{
         handles.add(new Handle(new EHandleState(this)));
         handles.add(new Handle(new NHandleState(this)));
         handles.add(new Handle(new SHandleState(this)));
-
-        return handles;
-
     }
 
 

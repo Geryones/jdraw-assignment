@@ -49,7 +49,4 @@ public class Oval extends AbstractFigure implements Figure{
         return oval.getBounds();
     }
 
-    @Override public Figure clone() {
-        return (Oval) SerializableClone.clone(this);
-    }
 }

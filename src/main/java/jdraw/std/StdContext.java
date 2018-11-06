@@ -121,7 +121,7 @@ public class StdContext extends AbstractContext {
 		editMenu.add(copy).setEnabled(true);
 
 		JMenuItem paste = new JMenuItem("Paste");
-		copy.addActionListener(e->{
+		paste.addActionListener(e->{
 			clipboard.forEach(
 					figure -> getView().getModel().addFigure(
 							figure.clone()));
