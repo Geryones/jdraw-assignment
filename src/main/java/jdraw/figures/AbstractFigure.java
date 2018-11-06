@@ -6,6 +6,7 @@ import jdraw.framework.FigureHandle;
 import jdraw.framework.FigureListener;
 import jdraw.handleStates.*;
 import jdraw.utils.SerializableClone;
+import org.springframework.expression.spel.ast.NullLiteral;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +26,9 @@ public abstract class AbstractFigure implements Figure{
 
     @Override
     public void addFigureListener(FigureListener listener) {
+        if (myFigureListener == null){
+            myFigureListener = new CopyOnWriteArrayList<>();
+        }
         myFigureListener.add(listener);
     }
 
