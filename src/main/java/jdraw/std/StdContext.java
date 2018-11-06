@@ -10,8 +10,6 @@ import jdraw.figures.OvalTool;
 import jdraw.figures.RectTool;
 import jdraw.framework.*;
 import jdraw.grid.SimpleGrid;
-import jdraw.utils.SerializableClone;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -109,10 +107,12 @@ public class StdContext extends AbstractContext {
 
 		editMenu.add(cut).setEnabled(true);
 		JMenuItem copy = new JMenuItem("Copy");
+
 		copy.addActionListener(e->{
 			if(!clipboard.isEmpty()){
 				clipboard.clear();
 			}
+
 			getView().getSelection().forEach(figure -> {
 				clipboard.add(figure.clone());
 			});

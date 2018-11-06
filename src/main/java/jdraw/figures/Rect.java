@@ -9,7 +9,6 @@ import jdraw.framework.Figure;
 import jdraw.utils.SerializableClone;
 
 import java.awt.*;
-import java.io.*;
 
 /**
  * Represents rectangles in JDraw.
