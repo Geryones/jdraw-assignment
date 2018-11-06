@@ -4,6 +4,7 @@
  */
 package jdraw.std;
 
+import jdraw.figures.Group;
 import jdraw.figures.LineTool;
 import jdraw.figures.OvalTool;
 import jdraw.figures.RectTool;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,6 +28,10 @@ import java.util.List;
  */
 @SuppressWarnings("serial")
 public class StdContext extends AbstractContext {
+
+	private List<Figure> clipboard = new ArrayList<>() {};
+
+
 	/**
 	 * Constructs a standard context with a default set of drawing tools.
 	 * @param view the view that is displaying the actual drawing.
@@ -88,9 +94,21 @@ public class StdContext extends AbstractContext {
 		);
 
 		editMenu.addSeparator();
-		editMenu.add("Cut").setEnabled(false);
-		editMenu.add("Copy").setEnabled(false);
-		editMenu.add("Paste").setEnabled(false);
+		JMenuItem cut = new JMenuItem("Cut");
+		cut.addActionListener(e->{
+			//TODO
+		});
+		editMenu.add(cut).setEnabled(false);
+		JMenuItem copy = new JMenuItem("Copy");
+		copy.addActionListener(e->{
+			//TODO
+		});
+		editMenu.add(copy).setEnabled(false);
+		JMenuItem paste = new JMenuItem("Paste");
+		copy.addActionListener(e->{
+			//TODO
+		});
+		editMenu.add(paste).setEnabled(false);
 
 		editMenu.addSeparator();
 		JMenuItem clear = new JMenuItem("Clear");
@@ -101,13 +119,31 @@ public class StdContext extends AbstractContext {
 		
 		editMenu.addSeparator();
 		JMenuItem group = new JMenuItem("Group");
-		group.setEnabled(false);
+		group.addActionListener(e -> {
+			Group newGroup = new Group(getView().getSelection());
+			getModel().addFigure(newGroup);
+			for (Figure f : getView().getSelection()){
+				getModel().removeFigure(f);
+			}
+			getView().addToSelection(newGroup);
+
+		});
 		editMenu.add(group);
 
 		JMenuItem ungroup = new JMenuItem("Ungroup");
-		ungroup.setEnabled(false);
-		editMenu.add(ungroup);
+		ungroup.addActionListener(e -> {
+			for (Figure f : getView().getSelection()){
+				if (f instanceof Group){
+					for (Figure x : ((Group) f).getFigureParts()){
+						getModel().addFigure(x);
+						getView().addToSelection(x);
+					}
+					getModel().removeFigure(f);
+				}
+			}
+		});
 
+		editMenu.add(ungroup);
 		editMenu.addSeparator();
 
 		JMenu orderMenu = new JMenu("Order...");
@@ -132,15 +168,13 @@ public class StdContext extends AbstractContext {
 
 		grid.add(simpleGrid);
 
-		JMenuItem noGrid = new JMenuItem("No Grid");
-		simpleGrid.addActionListener(e -> {
+		JMenuItem noGrid = new JMenuItem("Remove Grid");
+		noGrid.addActionListener(e -> {
 			getView().setGrid(null);
 		});
-
-		grid.add(simpleGrid);
 		grid.add(noGrid);
-		//grid.add("Grid 2");
-		//grid.add("Grid 3");
+		grid.add(simpleGrid);
+
 		editMenu.add(grid);
 		
 		return editMenu;

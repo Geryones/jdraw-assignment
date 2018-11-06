@@ -12,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class AbstractFigure implements Figure {
 
-
+    public Group parent = null;
 
     private CopyOnWriteArrayList<FigureListener> myFigureListener = new CopyOnWriteArrayList<>();
     List<FigureHandle> handles = new LinkedList<>();
