@@ -6,7 +6,7 @@ import jdraw.framework.FigureHandle;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-
+import java.io.Serializable;
 
 /**
  * Created by Geryones on 16/10/2018.

@@ -1,11 +1,13 @@
 package jdraw.figures;
 
 import jdraw.framework.Figure;
+import jdraw.utils.SerializableClone;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.io.Serializable;
 
-public class Oval extends AbstractFigure implements Figure {
+public class Oval extends AbstractFigure implements Figure{
     private final Ellipse2D oval;
 
 
@@ -45,5 +47,9 @@ public class Oval extends AbstractFigure implements Figure {
     @Override
     public Rectangle getBounds() {
         return oval.getBounds();
+    }
+
+    @Override public Figure clone() {
+        return (Oval) SerializableClone.clone(this);
     }
 }

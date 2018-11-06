@@ -3,6 +3,7 @@ package jdraw.figures;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
 import jdraw.handleStates.*;
+import jdraw.utils.SerializableClone;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -72,7 +73,9 @@ public class Line extends AbstractFigure implements Figure {
         return handles;
     }
 
-
+    @Override public Figure clone() {
+        return (Line) SerializableClone.clone(this);
+    }
 
     private void updatePoints() {
         start = new Point((int) line.getX1(),(int) line.getY1());
@@ -109,6 +112,8 @@ public class Line extends AbstractFigure implements Figure {
     public void swapVertical(){
 
     }
+
+
 }
 
 

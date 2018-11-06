@@ -5,6 +5,8 @@
 
 package jdraw.framework;
 
+import java.io.Serializable;
+
 /**
  * The class DrawModel represents the model of a drawing, i.e.
  * all figures stored in a graphic. Every draw view refers to a

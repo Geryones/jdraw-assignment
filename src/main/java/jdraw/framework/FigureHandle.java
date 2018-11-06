@@ -7,6 +7,7 @@ package jdraw.framework;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 /**
  * Handles are used to change a figure by direct manipulation. Handles know
@@ -18,7 +19,7 @@ import java.awt.event.MouseEvent;
  * @author Dominik Gruntz &amp; Christoph Denzler
  * @version 2.5
  */
-public interface FigureHandle {
+public interface FigureHandle extends Serializable {
 
 	/**
 	 * Gets the handle's owner.

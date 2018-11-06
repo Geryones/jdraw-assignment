@@ -10,6 +10,7 @@ import jdraw.figures.OvalTool;
 import jdraw.figures.RectTool;
 import jdraw.framework.*;
 import jdraw.grid.SimpleGrid;
+import jdraw.utils.SerializableClone;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -96,19 +97,36 @@ public class StdContext extends AbstractContext {
 		editMenu.addSeparator();
 		JMenuItem cut = new JMenuItem("Cut");
 		cut.addActionListener(e->{
-			//TODO
+			if(!clipboard.isEmpty()){
+				clipboard.clear();
+			}
+
+			getView().getSelection().forEach(figure -> {
+				clipboard.add(figure.clone());
+				getView().getModel().removeFigure(figure);
+			});
 		});
-		editMenu.add(cut).setEnabled(false);
+
+		editMenu.add(cut).setEnabled(true);
 		JMenuItem copy = new JMenuItem("Copy");
 		copy.addActionListener(e->{
-			//TODO
+			if(!clipboard.isEmpty()){
+				clipboard.clear();
+			}
+			getView().getSelection().forEach(figure -> {
+				clipboard.add(figure.clone());
+			});
+
 		});
-		editMenu.add(copy).setEnabled(false);
+		editMenu.add(copy).setEnabled(true);
+
 		JMenuItem paste = new JMenuItem("Paste");
 		copy.addActionListener(e->{
-			//TODO
+			clipboard.forEach(
+					figure -> getView().getModel().addFigure(
+							figure.clone()));
 		});
-		editMenu.add(paste).setEnabled(false);
+		editMenu.add(paste).setEnabled(true);
 
 		editMenu.addSeparator();
 		JMenuItem clear = new JMenuItem("Clear");

@@ -2,8 +2,10 @@ package jdraw.figures;
 
 import jdraw.framework.Figure;
 import jdraw.framework.FigureGroup;
+import jdraw.utils.SerializableClone;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -45,6 +47,10 @@ public class Group extends AbstractFigure implements Figure, FigureGroup {
            rect.add(parts.get(i).getBounds());
        }
         return rect;
+    }
+
+    @Override public Figure clone() {
+        return (Group) SerializableClone.clone(this);
     }
 
     @Override public Iterable<Figure> getFigureParts() {

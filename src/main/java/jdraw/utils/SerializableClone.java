@@ -1,5 +1,8 @@
 package jdraw.utils;
 
+import jdraw.figures.Rect;
+import jdraw.framework.Figure;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
@@ -46,4 +49,6 @@ public final class SerializableClone {
 
 	private SerializableClone() { } // prevent instantiation
 
+
 }
+

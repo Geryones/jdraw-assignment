@@ -5,12 +5,11 @@ import jdraw.framework.FigureEvent;
 import jdraw.framework.FigureHandle;
 import jdraw.framework.FigureListener;
 import jdraw.handleStates.*;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class AbstractFigure implements Figure {
+public abstract class AbstractFigure implements Figure{
 
     public Group parent = null;
 

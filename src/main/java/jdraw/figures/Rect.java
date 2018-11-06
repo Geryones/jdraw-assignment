@@ -6,8 +6,10 @@
 package jdraw.figures;
 
 import jdraw.framework.Figure;
+import jdraw.utils.SerializableClone;
 
 import java.awt.*;
+import java.io.*;
 
 /**
  * Represents rectangles in JDraw.
@@ -15,7 +17,7 @@ import java.awt.*;
  * @author Christoph Denzler
  *
  */
-public class Rect extends AbstractFigure implements Figure {
+public class Rect extends AbstractFigure implements Figure{
 	/**
 	 * Use the java.awt.Rectangle in order to save/reuse code.
 	 */
@@ -70,9 +72,9 @@ public class Rect extends AbstractFigure implements Figure {
 		return rectangle.getBounds();
 	}
 
+	@Override public Figure clone() {
+		return (Rect) SerializableClone.clone(this);
 
-
-
-
+	}
 
 }
