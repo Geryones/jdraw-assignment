@@ -4,6 +4,7 @@
  */
 package jdraw.std;
 
+import jdraw.decorators.BorderDecorator;
 import jdraw.figures.Group;
 import jdraw.figures.LineTool;
 import jdraw.figures.OvalTool;
@@ -11,6 +12,7 @@ import jdraw.figures.RectTool;
 import jdraw.framework.*;
 import jdraw.grid.SimpleGrid;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
@@ -194,7 +196,28 @@ public class StdContext extends AbstractContext {
 		grid.add(simpleGrid);
 
 		editMenu.add(grid);
-		
+
+		JMenu decorator = new JMenu("Decorators");
+		JMenuItem dec = new JMenuItem("Toggle BorderDecorator");
+		decorator.add(dec);
+		dec.addActionListener(e -> {
+					List<Figure> s = getView().getSelection();
+					getView().clearSelection();
+					for (Figure f : s) {
+						Figure f2 = null;
+						if (f instanceof BorderDecorator) {
+							f2 = ((BorderDecorator) f).getInner();
+						} else {
+							f2 = new BorderDecorator(f);
+						}
+						getModel().removeFigure(f);
+						getModel().addFigure(f2);
+						getView().addToSelection(f2);
+					}
+				}
+		);
+
+		editMenu.add(decorator);
 		return editMenu;
 	}
 

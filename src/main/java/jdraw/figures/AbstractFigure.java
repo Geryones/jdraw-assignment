@@ -19,16 +19,13 @@ public abstract class AbstractFigure implements Figure{
     private transient CopyOnWriteArrayList<FigureListener> myFigureListener = new CopyOnWriteArrayList<>();
     List<FigureHandle> handles = new LinkedList<>();
 
-    private Object readResolve() {
+    public Object readResolve() {
         this.myFigureListener = new CopyOnWriteArrayList<>();
         return this;
     }
 
     @Override
     public void addFigureListener(FigureListener listener) {
-        if (myFigureListener == null){
-            myFigureListener = new CopyOnWriteArrayList<>();
-        }
         myFigureListener.add(listener);
     }
 
