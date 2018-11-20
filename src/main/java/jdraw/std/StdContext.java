@@ -217,6 +217,23 @@ public class StdContext extends AbstractContext {
 				}
 		);
 
+		JMenuItem addDec = new JMenuItem("Add Border");
+		decorator.add(addDec);
+		addDec.addActionListener(e -> {
+					List<Figure> s = getView().getSelection();
+					getView().clearSelection();
+					for (Figure f : s) {
+						Figure f2 = null;
+							f2 = new BorderDecorator(f);
+						getModel().removeFigure(f);
+						getModel().addFigure(f2);
+						getView().addToSelection(f2);
+					}
+				}
+		);
+
+		
+
 		editMenu.add(decorator);
 		return editMenu;
 	}
