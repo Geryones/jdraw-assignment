@@ -338,6 +338,7 @@ public class StdContext extends AbstractContext {
 			File file = chooser.getSelectedFile();
 			FileFilter filter = chooser.getFileFilter();
 			if(filter instanceof FileNameExtensionFilter && !filter.accept(file)) {
+
 				file = new File(chooser.getCurrentDirectory(), file.getName() + "." + ((FileNameExtensionFilter)filter).getExtensions()[0]);
 			}
 			System.out.println("save current graphic to file " + file.getName() + " using format "
