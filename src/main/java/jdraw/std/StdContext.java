@@ -31,6 +31,7 @@ import java.util.List;
 public class StdContext extends AbstractContext {
 
 	private List<Figure> clipboard = new ArrayList<>() {};
+	private List<DrawToolFactory> drawToolFactories = new LinkedList<>();
 
 
 	/**
@@ -50,6 +51,7 @@ public class StdContext extends AbstractContext {
 	 */
 	public StdContext(DrawView view, List<DrawToolFactory> toolFactories) {
 		super(view, toolFactories);
+		this.drawToolFactories = toolFactories;
 	}
 
 	/**
@@ -265,15 +267,9 @@ public class StdContext extends AbstractContext {
 
 	@Override
 	protected void doRegisterDrawTools() {
-		// TODO Add new figure tools here
-		DrawTool rectangleTool = new RectTool(this);
-		addTool(rectangleTool);
-
-		DrawTool lineTool = new LineTool(this);
-		addTool(lineTool);
-
-		DrawTool ovalTool = new OvalTool(this);
-		addTool(ovalTool);
+		for(DrawToolFactory dt : getDrawToolFactories()){
+			addTool(dt== null ? null : dt.createTool(this));
+		}
 	}
 
 	/**
@@ -374,4 +370,7 @@ public class StdContext extends AbstractContext {
 		}
 	}
 
+	protected final List<DrawToolFactory> getDrawToolFactories() {
+		return drawToolFactories;
+	}
 }

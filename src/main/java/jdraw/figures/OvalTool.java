@@ -6,8 +6,8 @@ import jdraw.framework.Figure;
 
 public class OvalTool extends AbstractDrawTool implements DrawTool {
 
-    public OvalTool(DrawContext context){
-        super(context,"oval");
+    public OvalTool(DrawContext context, String name, String icon){
+        super(context, name, icon);
     }
 
 

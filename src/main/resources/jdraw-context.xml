@@ -17,18 +17,19 @@
 		<property name="height"><value>400</value></property>
 
 		<constructor-arg>
-			<list>	<!-- null represents a separator -->
-<!--
+			<list>
+
 				<ref bean="line"/>
 				<ref bean="rectangle"/>
+				<null/> <!-- seperator -->
 				<ref bean="oval"/>
--->
+
 			</list>
 		</constructor-arg>
 	</bean>
 
 
-<!--
+
 	<bean id="rectangle" class="jdraw.figures.RectangleToolFactory">
 		<property name="name"><value>Rectangle</value></property>
 		<property name="iconName"><value>rectangle.png</value></property>
@@ -43,6 +44,5 @@
 		<property name="name"><value>Oval</value></property>
 		<property name="iconName"><value>oval.png</value></property>
 	</bean>
--->
 
 </beans>

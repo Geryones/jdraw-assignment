@@ -18,11 +18,13 @@ public abstract class AbstractDrawTool implements DrawTool {
     private String shapeName;
     protected Point anchor=null;
     protected Figure newFigure=null;
+    private String icon;
 
-    public AbstractDrawTool(DrawContext context, String shapeName){
+    public AbstractDrawTool(DrawContext context, String shapeName, String icon){
         this.context=context;
         this.view=context.getView();
         this.shapeName=shapeName;
+        this.icon = icon;
     }
 
     /**
@@ -115,7 +117,7 @@ public abstract class AbstractDrawTool implements DrawTool {
 
     @Override
     public Icon getIcon() {
-        return new ImageIcon(getClass().getResource(IMAGES + shapeName+".png"));
+        return new ImageIcon(getClass().getResource(IMAGES + icon));
     }
 
     @Override

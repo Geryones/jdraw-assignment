@@ -22,9 +22,9 @@ public class RectTool extends AbstractDrawTool implements DrawTool {
 	 * Create a new rectangle tool for the given context.
 	 * @param context a context to use this tool in.
 	 */
-	public RectTool(DrawContext context) {
+	public RectTool(DrawContext context, String name, String icon) {
 
-		super(context,"rectangle");
+		super(context, name, icon);
 	}
 
 	@Override

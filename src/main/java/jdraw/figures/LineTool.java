@@ -9,8 +9,8 @@ public class LineTool extends AbstractDrawTool implements DrawTool {
 
     private Line newLine=null;
 
-    public LineTool(DrawContext context){
-        super(context,"line");
+    public LineTool(DrawContext context, String name, String icon){
+        super(context, name, icon);
 
     }
 
